@@ -309,7 +309,7 @@ I continuously learn new technologies, research better approaches and focus on w
     >
 
 
-     <div className="max-w-6xl mx-auto px-2 sm:px-4">
+     <div className="max-w-6xl mx-auto md:px-6">
 
 
 
