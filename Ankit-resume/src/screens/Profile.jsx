@@ -309,26 +309,7 @@ I continuously learn new technologies, research better approaches and focus on w
     >
 
 
-      <div
-
-        className={`max-w-6xl mx-auto rounded-3xl p-5 sm:p-8 shadow-2xl backdrop-blur-xl border
-
-        ${
-          lightMode
-
-          ?
-
-          "bg-white/80 border-gray-200"
-
-          :
-
-          "bg-white/5 border-white/10"
-
-        }
-
-        `}
-
-      >
+     <div className="max-w-6xl mx-auto px-2 sm:px-4">
 
 
 
