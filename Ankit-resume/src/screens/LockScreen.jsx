@@ -77,8 +77,8 @@ export default function LockScreen({ onUnlock }) {
       </div>
 
         <div className={styles.card}>
-          <h2>Amit Nehra</h2>
-          <p>Senior Manager – Strategy & Operations</p>
+          <h2>Ankit Nehra</h2>
+          <p>SFull Stack Developer | MERN Stack Developer</p>
         </div>
       </div>
 
