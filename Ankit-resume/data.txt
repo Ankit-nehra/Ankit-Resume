@@ -1,0 +1,758 @@
+curently i'm building resume , this is code :-
+app.jsx:-// src/App.js
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
+
+import LockScreen from "./screens/LockScreen";
+import Dashboard from "./screens/Dashboard";
+import Profile from "./screens/Profile";
+import Experience from "./screens/Experience";
+import Skills from "./screens/Skills";
+import Achievements from "./screens/Achievements";
+import Certificates from "./screens/Certificates";
+
+// ScrollToTop component
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
+  return null;
+}
+
+function App() {
+  const [unlocked, setUnlocked] = useState(false); // lock state
+
+  return (
+    <Router>
+      {!unlocked ? (
+        // Show LockScreen first
+        <LockScreen onUnlock={() => setUnlocked(true)} />
+      ) : (
+        <>
+          {/* Scroll to top on route change */}
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Dashboard />}>
+              <Route index element={<Navigate to="/profile" />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="experience" element={<Experience />} />
+              <Route path="skills" element={<Skills />} />
+              <Route path="achievements" element={<Achievements />} />
+              <Route path="certificates" element={<Certificates />} />
+            </Route>
+          </Routes>
+        </>
+      )}
+    </Router>
+  );
+}
+
+export default App;
+
+screens/lockscreen.jsx:-
+import { useEffect, useRef, useState } from "react";
+import styles from "./LockScreen.module.css";
+import wallpaper from "../assets/om.jpg"
+export default function LockScreen({ onUnlock }) {
+  const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
+  const [unlocking, setUnlocking] = useState(false);
+
+  const startY = useRef(0);
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
+
+      setTime(`${h}:${m}:${s}`);
+
+      setDate(
+        now.toLocaleDateString([], {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+        })
+      );
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000); // real-time clock
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleStart = (y) => {
+    startY.current = y;
+  };
+
+  const handleEnd = (y) => {
+    if (startY.current - y > 100) {
+      setUnlocking(true);
+      setTimeout(onUnlock, 500);
+    }
+  };
+
+  return (
+    <div
+      className={`${styles.screen} ${unlocking ? styles.unlock : ""}`}
+      onTouchStart={(e) => handleStart(e.touches[0].clientY)}
+      onTouchEnd={(e) => handleEnd(e.changedTouches[0].clientY)}
+      onMouseDown={(e) => handleStart(e.clientY)}
+      onMouseUp={(e) => handleEnd(e.clientY)}
+      style={{
+        backgroundImage: `url(${wallpaper})`,
+      }}
+    >
+      {/* top status bar */}
+      <div className={styles.statusBar}>
+        <span>9:41</span>
+        <span>🔋 87%</span>
+      </div>
+
+      {/* main content */}
+      <div className={styles.center}>
+        <img
+          src="/profile.enc"
+          alt="Profile"
+          className={styles.profile}
+        />
+
+      <div className={styles.timeBox}>
+        <p className={styles.date}>{date}</p>
+        <h1 className={styles.time}>{time}</h1>
+      </div>
+
+        <div className={styles.card}>
+          <h2>Amit Nehra</h2>
+          <p>Senior Manager – Strategy & Operations</p>
+        </div>
+      </div>
+
+      {/* swipe hint */}
+      <div className={styles.swipe}>
+        <span>Swipe up</span>
+        <div className={styles.arrow}>⌃</div>
+      </div>
+    </div>
+  );
+}
+
+screens/lockscreen.module.css:-
+.screen {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  color: white;
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.5s ease;
+
+}
+
+/* unlock animation */
+.unlock {
+  transform: translateY(-100%);
+}
+
+/* status bar */
+.statusBar {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* center content */
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.profile {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #14b8a6;
+  margin-bottom: 12px;
+  object-fit: cover;
+}
+
+.date {
+  color: #9ca3af;
+  font-size: 16px;
+}
+
+.time {
+  font-size: 72px;
+  font-weight: 600;
+  color: #2dd4bf;
+}
+
+/* Time + Date Glass Container */
+.timeBox {
+  margin-top: 12px;
+  padding: 16px 28px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+ 
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* card */
+.card {
+  margin-top: 20px;
+  padding: 20px;
+  width: 280px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.card h2 {
+  color: #2dd4bf;
+  margin-bottom: 6px;
+}
+
+/* swipe */
+.swipe {
+  position: absolute;
+  bottom: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0.8;
+  animation: bounce 1.5s infinite;
+}
+
+.arrow {
+  transform: rotate(180deg);
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+ 
+
+screens/dashboard.jsx:-
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { FaUser, FaBriefcase, FaTools, FaStar, FaGraduationCap } from "react-icons/fa";
+import { useSwipeable } from "react-swipeable"; // <-- added
+
+export default function Dashboard() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const sections = [
+    { path: "/profile", title: "Profile", icon: <FaUser /> },
+    { path: "/experience", title: "Experience", icon: <FaBriefcase /> },
+    { path: "/skills", title: "Skills", icon: <FaTools /> },
+    { path: "/achievements", title: "Achievements", icon: <FaStar /> },
+    { path: "/certificates", title: "Certificates", icon: <FaGraduationCap /> },
+  ];
+
+  const currentIndex = sections.findIndex((sec) => sec.path === location.pathname);
+
+  // Swipe handlers
+  const handlers = useSwipeable({
+    onSwipedLeft: () => {
+      if (currentIndex < sections.length - 1) {
+        navigate(sections[currentIndex + 1].path);
+      }
+    },
+    onSwipedRight: () => {
+      if (currentIndex > 0) {
+        navigate(sections[currentIndex - 1].path);
+      }
+    },
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true, // optional: allows mouse drag swipe for desktop
+  });
+
+  return (
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
+      
+      {/* Page Content */}
+      <div
+        {...handlers} // <-- attach swipe events here
+        className="flex-1 w-full 
+                   px-3 sm:px-4 md:px-6 
+                   py-6 sm:py-8 
+                   pb-28 
+                   flex flex-col gap-8 sm:gap-10"
+      >
+        <Outlet />
+      </div>
+
+      {/* Bottom Navigation */}
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 
+                      w-[96%] max-w-3xl 
+                      rounded-2xl sm:rounded-full 
+                      bg-white/10 backdrop-blur-md shadow-xl 
+                      flex justify-between items-center 
+                      px-2 sm:px-4 py-2 
+                      z-50">
+
+        {sections.map((sec) => {
+          const isActive = location.pathname === sec.path;
+
+          return (
+            <button
+              key={sec.path}
+              onClick={() => navigate(sec.path)}
+              className={`flex flex-col items-center justify-center flex-1 
+                          py-1 
+                          transition-all duration-300
+                          ${
+                            isActive
+                              ? "text-teal-400 scale-105"
+                              : "text-gray-300 hover:text-teal-400"
+                          }`}
+            >
+              <div className="text-base sm:text-lg md:text-xl">
+                {sec.icon}
+              </div>
+              <span className="text-[9px] sm:text-xs mt-1">
+                {sec.title}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+screens/profiles.jsx:-
+ import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaLinkedin } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+
+export default function Profile() {
+  const timelineRef = useRef(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!timelineRef.current) return;
+      const rect = timelineRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      const visible = Math.min(
+        Math.max(windowHeight - rect.top, 0),
+        rect.height
+      );
+
+      setHeight(visible);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const profileData = {
+    name: "Amit Nehra",
+    role: "Operations Executive",
+    currentAddress: "Haryana, Panipat",
+    permanentAddress: "Panipat, Haryana",
+    phone: "8814089XXX",
+    email: "Nehra78@gmail.com",
+    linkedin: "linkedin.com/in/Amit-nehra-803430236",
+    professionalSummary: `Dedicated Operations Executive with over 2 years of experience in operations management,
+    adept at managing and optimizing warehousing operations, addressing client requirements, and streamlining
+    processes to improve efficiency. Expertise in WMS, high-turnover inventory management, and leading
+    cross-functional teams to achieve organizational goals.`,
+    education: [
+      {
+        degree: "Master in Business Administration",
+        college: "D.C.R.U.S.T., Murthal",
+        year: 2023,
+        cgpa: "7.2 (CGPA)",
+      },
+      {
+        degree: "Bachelor of Commerce",
+        college: "Arya P.G. College, Panipat",
+        year: 2020,
+        percentage: "69.25%",
+      },
+    ],
+  };
+
+  return (
+    <div className="w-full bg-gray-800/40 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-xl">
+
+      {/* Header */}
+      <div className="text-center mb-8">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-teal-400">
+          {profileData.name}
+        </h1>
+        <p className="text-teal-200 text-sm sm:text-lg mt-2">
+          {profileData.role}
+        </p>
+      </div>
+
+      {/* Contact */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 text-gray-300 text-sm sm:text-base">
+
+        <div className="flex items-start gap-2">
+          <FaMapMarkerAlt className="text-teal-400 mt-1" />
+          <span>Current: {profileData.currentAddress}</span>
+        </div>
+
+        <div className="flex items-start gap-2">
+          <FaMapMarkerAlt className="text-teal-400 mt-1" />
+          <span>Address: {profileData.permanentAddress}</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <FaPhone className="text-teal-400" />
+          <span>{profileData.phone}</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <FaEnvelope className="text-teal-400" />
+          <span className="break-all">{profileData.email}</span>
+        </div>
+
+        <div className="flex items-center gap-2 sm:col-span-2">
+          <FaLinkedin className="text-teal-400" />
+          <a
+            href={`https://${profileData.linkedin}`}
+            target="_blank"
+            rel="noreferrer"
+            className="underline text-teal-300"
+          >
+            LinkedIn Profile
+          </a>
+        </div>
+      </div>
+
+      {/* Summary */}
+      <div className="mb-10">
+        <h2 className="text-xl sm:text-2xl font-semibold text-teal-400 mb-4 border-b-2 border-teal-500 w-fit pb-1">
+          Professional Summary
+        </h2>
+        <p className="text-gray-200 leading-relaxed text-sm sm:text-base">
+          {profileData.professionalSummary}
+        </p>
+      </div>
+
+      {/* Education Timeline */}
+      <div>
+        <h2 className="text-xl sm:text-2xl font-semibold text-teal-400 mb-6 border-b-2 border-teal-500 w-fit pb-1">
+          Education
+        </h2>
+
+        <div className="relative flex gap-6" ref={timelineRef}>
+
+{/* Static line */}
+<div className="absolute left-[10px] top-0 w-[2px] h-full bg-gray-700"></div>
+
+{/* Animated line */}
+<div
+  className="absolute left-[10px] top-0 w-[2px] bg-teal-400 transition-all duration-300"
+  style={{ height: `${height}px` }}
+></div>
+
+          {/* Content */}
+          <div className="flex flex-col gap-8 w-full">
+            {profileData.education.map((edu, idx) => (
+              <div key={idx} className="flex items-start gap-4">
+
+                {/* Year badge */}
+<div className="min-w-[60px] text-center">
+  <div className="bg-teal-500/20 backdrop-blur-sm border border-teal-400/50 
+                  text-teal-300 text-xs sm:text-sm font-semibold 
+                  px-3 py-1 rounded-xl 
+                  shadow-sm hover:shadow-md hover:bg-teal-500/30 
+                  transition-all duration-300">
+    {edu.year}
+  </div>
+</div>
+
+                {/* Card */}
+                <div className="flex-1 bg-gradient-to-br from-gray-900/60 to-gray-800/40 
+                                border border-gray-700/40 rounded-xl p-4 sm:p-6 
+                                shadow-md hover:shadow-xl hover:border-teal-400/40 transition-all">
+
+                  <p className="text-gray-100 font-semibold text-base sm:text-lg">
+                    {edu.degree}
+                  </p>
+
+                  <p className="text-gray-400 text-xs sm:text-sm mt-1">
+                    {edu.college}
+                  </p>
+
+                  <div className="h-px bg-gray-700/50 my-3"></div>
+
+                  <p className="text-gray-400 text-xs sm:text-sm">
+                    {edu.cgpa
+                      ? `CGPA: ${edu.cgpa}`
+                      : edu.percentage
+                      ? edu.percentage
+                      : ""}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+screens/achivements.jsx:-
+// src/sections/Achievements.jsx
+import { FaStar } from "react-icons/fa";
+
+export default function Achievements() {
+  const achievementsData = [
+    'Received "High Potential Employee (HIPO)" certificate within 6 months of joining.',
+    "Successfully managed high-turnover inventory and maintained stock accuracy during peak seasons.",
+    "Suggested/Implemented observations for continuous improvement in operations and SOPs.",
+    "Implemented measures to reduce damages and TAT for picking and packing.",
+    "Student member of editorial board for annual reports of University – DCRUST, 2023.",
+    "Coordinator of management society – DCRUST, (2021-2023).",
+  ];
+
+  return (
+    <div className="bg-gray-900 min-h-screen flex flex-col items-center py-6 sm:py-8">
+      {/* Heading with top margin */}
+      <h1 className="text-3xl sm:text-4xl font-bold text-teal-400 mt-6 sm:mt-8 mb-6 text-center border-b-2 border-teal-500 pb-2 w-fit">
+        Achievements
+      </h1>
+
+      {/* Container */}
+      <div className="w-full max-w-4xl px-4 sm:px-0 bg-gray-800/40 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl">
+        <ul className="flex flex-col gap-4">
+          {achievementsData.map((ach, idx) => (
+            <li
+              key={idx}
+              className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50
+                         rounded-xl p-4 sm:p-5 shadow-md hover:shadow-xl hover:border-teal-400/40
+                         transition-all duration-300 flex items-start gap-3 text-gray-200"
+            >
+              <FaStar className="text-teal-400 mt-1 flex-shrink-0" />
+              <p className="text-sm sm:text-base leading-relaxed">{ach}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+
+screens/certificates.jsx:-// src/sections/Certificates.jsx
+import { FaGraduationCap } from "react-icons/fa";
+
+export default function Certificates() {
+  const certificatesData = [
+    "PowerBI Basics Certification – Skill Course",
+    "Export Management – Arya P.G. College",
+    "Microsoft Excel – Udemy",
+    "HIPO Certificate – AAJ Supply Chain Management Pvt. Ltd.",
+    "Master Course in Logistics and Supply Chain Management – Udemy",
+  ];
+
+  return (
+    <div className="bg-gray-900 min-h-screen flex flex-col items-center py-6 sm:py-8">
+      {/* Heading with top margin */}
+      <h1 className="text-3xl sm:text-4xl font-bold text-teal-400 mt-6 sm:mt-8 mb-6 text-center border-b-2 border-teal-500 pb-2 w-fit">
+        Certificates
+      </h1>
+
+      {/* Container */}
+      <div className="w-full max-w-4xl px-4 sm:px-0 bg-gray-800/40 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl">
+        <ul className="flex flex-col gap-4">
+          {certificatesData.map((cert, idx) => (
+            <li
+              key={idx}
+              className="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50
+                         rounded-xl p-4 sm:p-5 shadow-md hover:shadow-xl hover:border-teal-400/40
+                         transition-all duration-300 flex items-center gap-3 text-gray-200"
+            >
+              <FaGraduationCap className="text-teal-400 text-lg flex-shrink-0" />
+              <span className="text-sm sm:text-base">{cert}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+screens/experence.jsx:-// src/sections/Experience.jsx
+import { FaBriefcase, FaCalendarAlt } from "react-icons/fa";
+
+export default function Experience() {
+  const experienceData = [
+    {
+      role: "Store Manager",
+      company: "Blinkit",
+      location: "Haryana, Panipat",
+      period: "01/2026 – Present",
+      description: [
+        "Promoted from Assistant Store Manager to Store Manager.",
+        "Led end-to-end store operations including inbound, inventory control, picking, packing, and last-mile dispatch, ensuring consistent SLA adherence.",
+        "Reported to upper management about store SLAs and monthly matrix.",
+        "Managed a team of pickers/putters/auditors and last-mile riders with shift-wise planning and productivity tracking.",
+        "Monitored and improved KPIs: Order Fill Rate, Item Availability %, Shrinkage %, Wastage %, Customer Complaints, Hourly Throughput.",
+        "Ensured strict adherence to SOPs, safety, hygiene, and compliance standards; cleared internal/external audits with minimal deviations.",
+        "Led team performance management including hiring, training, mentoring, and disciplinary actions.",
+      ],
+    },
+    {
+      role: "Assistant Store Manager",
+      company: "Blinkit",
+      location: "Haryana, Panipat",
+      period: "04/2025 – 12/2025",
+      description: [
+        "Supervised daily store operations: inbound, picking, packing, dispatch.",
+        "Managed team of pickers and riders with shift-wise manpower planning.",
+        "Maintained inventory levels and stock accuracy through audits and FIFO/FEFO practices.",
+        "Ensured adherence to SOPs for receiving, putaway, and order fulfillment.",
+        "Monitored KPIs: order fill rate, shrinkage, item availability, hourly throughput.",
+        "Handled store-level escalations and coordinated with supply chain, category, and central ops teams.",
+        "Implemented safety, hygiene, and compliance protocols; trained and mentored staff.",
+      ],
+    },
+    {
+      role: "Operations Executive",
+      company: "AAJ Supply Chain Management Pvt. Ltd.",
+      location: "Ghaziabad, Uttar Pradesh",
+      period: "05/2023 – 04/2025",
+      description: [
+        "Oversaw daily operations across 5 warehouse departments: Inward, Inventory, Picking & Packing, Dispatch, Sales Return.",
+        "Maintained coordination with external stakeholders and clients.",
+        "Controlled inventory shortages and maintained fulfillment via regular counts and inward cross-checks.",
+        "Managed operations (POC) of Cambridge University Press for 1.8 years, along with 3 other non-publishing clients.",
+        "Tracked and shared departmental reports.",
+        "Recommended process improvements to reduce TAT and operational costs.",
+        "Collaborated with software team to enhance WMS functionalities for picking and packing.",
+        "Implemented and improved SOPs to improve order accuracy and minimize damages/errors.",
+        "Coordinated dispatch using TMS for local and outstation deliveries.",
+        "Prepared daily MIS reports and monthly billing for clients.",
+        "Trained and mentored new hires to ensure SOP adherence.",
+      ],
+    },
+    {
+      role: "Subject Matter Expert - Operations Management",
+      company: "Chegg (Freelance)",
+      location: "Remote",
+      period: "02/2023 – 05/2023",
+      description: [
+        "Assisted students in understanding key concepts in Operations Management.",
+        "Solved complex queries and case studies ensuring accurate and practical solutions.",
+        "Provided detailed, step-by-step solutions to enhance students' learning and problem-solving skills.",
+      ],
+    },
+  ];
+
+  return (
+    <div className="bg-gray-900 min-h-screen flex flex-col items-center py-6 sm:py-8">
+
+      {/* Top margin only for heading */}
+      <h1 className="text-3xl sm:text-4xl font-bold text-teal-400 mt-6 sm:mt-8 mb-6 text-center border-b-2 border-teal-500 pb-2 w-fit">
+        Experience
+      </h1>
+
+      {/* Experience Cards: no outer container, full width */}
+      <div className="flex flex-col gap-6 w-full max-w-4xl px-4 sm:px-0">
+        {experienceData.map((exp, idx) => (
+          <div
+            key={idx}
+            className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 sm:p-6 shadow-md hover:shadow-xl hover:border-teal-400/40 transition-all duration-300"
+          >
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2 gap-1 sm:gap-0">
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-200 flex items-center gap-2">
+                <FaBriefcase className="text-teal-400" /> {exp.role}
+              </h2>
+              <span className="flex items-center text-gray-400 gap-2">
+                <FaCalendarAlt className="text-teal-400" /> {exp.period}
+              </span>
+            </div>
+            <p className="text-gray-400 text-sm sm:text-base mb-2">{exp.company} | {exp.location}</p>
+            <ul className="list-disc pl-5 text-gray-300 space-y-1">
+              {exp.description.map((desc, i) => (
+                <li key={i} className="text-sm sm:text-base">{desc}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+screens/skills.jsx:-
+// src/sections/Skills.jsx
+import { FaBrain } from "react-icons/fa";
+
+export default function Skills() {
+  const skillsData = [
+    "Warehouse Management Systems (WMS)",
+    "Inventory Control & Optimization",
+    "Fulfillment Tracking",
+    "SOP Development",
+    "Client Relationship Management",
+    "Warehouse Process Optimization",
+    "Cross-Departmental Coordination",
+    "Operations Management",
+    "Process Improvement & Cost Reduction",
+    "KPI Monitoring & Reporting",
+    "Team Leadership & Training",
+  ];
+
+  return (
+    <div className="bg-gray-900 min-h-screen flex flex-col items-center py-6 sm:py-8">
+      {/* Heading with top margin */}
+      <h1 className="text-3xl sm:text-4xl font-bold text-teal-400 mt-6 sm:mt-8 mb-6 text-center border-b-2 border-teal-500 pb-2 w-fit">
+        Skills
+      </h1>
+
+      {/* Container */}
+      <div className="w-full max-w-4xl px-4 sm:px-0 bg-gray-800/40 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {skillsData.map((skill, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-700/50 p-3 sm:p-4 rounded-lg shadow-inner hover:shadow-teal-400
+                         text-gray-200 flex items-center gap-3 transition-shadow"
+            >
+              {/* Left aligned icon */}
+              <FaBrain className="text-teal-400 text-xl flex-shrink-0" />
+              <span className="text-sm sm:text-base">{skill}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
