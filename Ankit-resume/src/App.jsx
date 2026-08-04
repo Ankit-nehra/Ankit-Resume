@@ -15,7 +15,9 @@ import Experience from "./screens/Experience";
 import Skills from "./screens/Skills";
 import Achievements from "./screens/Achievements";
 import Certificates from "./screens/Certificates";
+import UploadCertificates from "./screens/UploadCertificates";
 
+import UploadGuard from "./screens/UploadGuard";
 // ScrollToTop component
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -81,6 +83,16 @@ function App() {
                 path="certificates"
                 element={<Certificates lightMode={lightMode} />}
               />
+              <Route
+path="uploadcertificates"
+element={
+    <UploadGuard>
+        <UploadCertificates 
+            lightMode={lightMode}
+        />
+    </UploadGuard>
+}
+/>
             </Route>
           </Routes>
         </>
