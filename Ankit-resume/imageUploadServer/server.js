@@ -2,7 +2,7 @@
 import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
-import cors from "cors";
+
 
 
 import certificateRoutes from "./routes/certificateRoutes.js";
@@ -17,12 +17,7 @@ const app = express();
 
 // Middleware
 
-app.use(
-  cors({
-    origin: "https://ankit-resume-tejg-brown.vercel.app/",
-    credentials: true,
-  })
-);
+
 
 
 app.use(express.json());
