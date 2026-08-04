@@ -19,7 +19,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://ankit-resume-blue.vercel.app/",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
@@ -86,6 +86,33 @@ app.get("/api/test", (req, res) => {
 
 });
 
+app.post("/api/verify-upload", (req,res)=>{
+
+
+    const {key}=req.body;
+
+
+    if(key === process.env.UPLOAD_SECRET){
+
+
+        return res.json({
+            success:true
+        });
+
+
+    }
+
+
+
+    return res.status(401).json({
+
+        success:false,
+        message:"Invalid Secret Key"
+
+    });
+
+
+});
 
 
 
