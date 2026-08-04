@@ -140,10 +140,23 @@ export default function Certificates({ lightMode }) {
 {/* Upload Button */}
 {/* Heading Row */}
 
-<div className="relative max-w-7xl mx-auto px-4 mb-12 flex items-center justify-center">
+{/* Upload Button + Heading */}
+
+<div
+  className="
+  max-w-7xl
+  mx-auto
+  px-4
+  mb-12
+  flex
+  items-center
+  justify-center
+  relative
+  "
+>
 
 
-  {/* Upload Button Left */}
+  {/* Upload Icon */}
 
   <button
 
@@ -152,9 +165,10 @@ export default function Certificates({ lightMode }) {
     title="Upload Certificate"
 
     className={`
-
+    
     absolute
     left-4
+    sm:left-6
 
     w-12
     h-12
@@ -167,24 +181,14 @@ export default function Certificates({ lightMode }) {
 
     shadow-xl
 
+    hover:scale-110
+
     transition-all
     duration-300
 
-    hover:scale-110
-
-
-    ${
-      lightMode
-
-      ?
-
-      "bg-teal-500 text-white hover:bg-teal-600"
-
-      :
-
-      "bg-teal-500 text-white hover:bg-teal-600"
-
-    }
+    bg-teal-500
+    hover:bg-teal-600
+    text-white
 
     `}
 
@@ -196,7 +200,8 @@ export default function Certificates({ lightMode }) {
 
 
 
-  {/* Center Heading */}
+
+  {/* Heading */}
 
   <h1
 
@@ -213,8 +218,6 @@ export default function Certificates({ lightMode }) {
     text-teal-400
 
     flex
-
-    justify-center
 
     items-center
 
@@ -233,7 +236,6 @@ export default function Certificates({ lightMode }) {
 
 
 </div>
-
 
 
 
