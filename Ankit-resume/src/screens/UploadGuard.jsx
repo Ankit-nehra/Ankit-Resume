@@ -21,7 +21,7 @@ export default function UploadGuard({children}){
 
 
             const res=await axios.post(
-                "http://localhost:3001/api/verify-upload",
+                "https://ankit-resume-1.onrender.com/api/verify-upload",
                 {
                     key
                 }
