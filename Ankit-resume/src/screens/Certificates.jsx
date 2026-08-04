@@ -19,7 +19,7 @@ export default function Certificates({ lightMode }) {
   const navigate = useNavigate();
 
 
-  const API = "http://localhost:3001/api/certificates";
+  const API = "https://ankit-resume.onrender.com/api/certificates";
 
 
 
