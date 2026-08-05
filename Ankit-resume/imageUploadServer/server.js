@@ -1,12 +1,20 @@
 import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 
 import certificateRoutes from "./routes/certificateRoutes.js";
 
 const app = express();
 
 // Middleware
+app.use(
+  cors({
+    origin: "https://ankit-resume-teal.vercel.app",
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 
 app.use(
@@ -42,7 +50,7 @@ app.get("/api/test", (req, res) => {
 app.post("/api/verify-upload", (req, res) => {
   const { key } = req.body;
 
-  console.log(key);
+  console.log("Received key:", key);
 
   if (key === process.env.UPLOAD_SECRET) {
     return res.json({
