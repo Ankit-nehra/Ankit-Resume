@@ -19,7 +19,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://ankit-resume-git-main-ankit-nehras-projects.vercel.app/",
+    origin: "https://ankit-resume-teal.vercel.app/",
     credentials: true,
   })
 );
