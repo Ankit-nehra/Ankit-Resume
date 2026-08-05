@@ -12,8 +12,7 @@ app.use(
   cors({
     origin: [
       "https://ankit-resume-mauve.vercel.app",
-      "https://ankit-resume-git-main-ankit-nehras-projects.vercel.app",
-      "https://ankit-resume-b5k7kco75-ankit-nehras-projects.vercel.app",
+
     ],
     credentials: true,
   })
