@@ -18,7 +18,7 @@ export default function UploadGuard({children, lightMode}){
         try{
 
             const res=await axios.post(
-                "https://ankit-resume-mauve.vercel.app/api/verify-upload",
+                "https://ankit-resume.onrender.com/api/verify-upload",
                 {
                     key
                 }
