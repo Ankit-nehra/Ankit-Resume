@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 
-import certificateRoutes from "./routes/certificateRoutes";
+import certificateRoutes from "./routes/certificateRoutes.js";
 
 
 
