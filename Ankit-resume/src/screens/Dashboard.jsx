@@ -15,7 +15,7 @@ import {
   FaTimes,
 } from "react-icons/fa";
 
-import { useSwipeable } from "react-swipeable";
+
 
 
 export default function Dashboard({ lightMode, setLightMode }) {
@@ -53,6 +53,7 @@ export default function Dashboard({ lightMode, setLightMode }) {
       title: "Certificates",
       icon: <FaGraduationCap />
     },
+    
   ];
 
 
@@ -62,32 +63,7 @@ const resumeLink = "https://docs.google.com/document/d/1zbNBpTCven3Q8-BZcbY5BqYJ
 
 
 
-  const currentIndex = sections.findIndex(
-    (sec) => sec.path === location.pathname
-  );
-
-
-
-  const handlers = useSwipeable({
-
-    onSwipedLeft: () => {
-      if (currentIndex < sections.length - 1) {
-        navigate(sections[currentIndex + 1].path);
-      }
-    },
-
-
-    onSwipedRight: () => {
-      if (currentIndex > 0) {
-        navigate(sections[currentIndex - 1].path);
-      }
-    },
-
-
-    preventDefaultTouchmoveEvent: true,
-    trackMouse: true,
-
-  });
+  
 
 
 
@@ -172,7 +148,7 @@ const resumeLink = "https://docs.google.com/document/d/1zbNBpTCven3Q8-BZcbY5BqYJ
 
       <div
 
-        {...handlers}
+       
 
         className="
         flex-1
