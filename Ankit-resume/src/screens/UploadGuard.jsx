@@ -18,7 +18,7 @@ export default function UploadGuard({children, lightMode}){
         try{
 
             const res=await axios.post(
-                "http://localhost:3001/api/verify-upload",
+                "https://ankit-resume-mauve.vercel.app/api/verify-upload",
                 {
                     key
                 }
