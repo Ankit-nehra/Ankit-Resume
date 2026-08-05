@@ -1096,43 +1096,6 @@ export default function Certificates({ lightMode }) {
 
 
 
-{/* Certificates Footer */}
-
-<div
-  className="
-  max-w-7xl
-  mx-auto
-  px-4
-  mt-12
-  flex
-  justify-end
-  "
->
-
-  <button
-    onClick={() => navigate("/uploadcertificates")}
-    title="Upload Certificate"
-
-    className="
-    w-12
-    h-12
-    rounded-full
-    bg-teal-500
-    hover:bg-teal-600
-    text-white
-    flex
-    items-center
-    justify-center
-    shadow-xl
-    transition-all
-    duration-300
-    hover:scale-110
-    "
-  >
-    <FaUpload size={20}/>
-  </button>
-
-</div>
 
         ))
 
@@ -1149,7 +1112,64 @@ export default function Certificates({ lightMode }) {
 
       </div>
 
+{/* Upload Certificate Footer */}
 
+<div
+  className="
+  max-w-7xl
+  mx-auto
+  px-4
+  mt-16
+  mb-8
+  flex
+  items-center
+  justify-between
+  "
+>
+
+  <h2
+    className="
+    text-2xl
+    sm:text-3xl
+    font-bold
+    text-teal-400
+    flex
+    items-center
+    gap-3
+    "
+  >
+    <FaUpload />
+    Upload Your Certificate
+  </h2>
+
+
+  <button
+    onClick={() => navigate("/uploadcertificates")}
+    className="
+    px-6
+    py-3
+    rounded-xl
+    bg-teal-500
+    hover:bg-teal-600
+    text-white
+    flex
+    items-center
+    gap-3
+    shadow-xl
+    transition-all
+    duration-300
+    hover:scale-105
+    font-semibold
+    "
+  >
+
+    Upload Certificate
+
+    <FaUpload />
+
+  </button>
+
+</div>
 
 
 
