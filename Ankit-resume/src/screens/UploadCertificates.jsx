@@ -13,7 +13,7 @@ import {
 export default function UploadCertificates({ lightMode }) {
 
 
-  const API = "https://ankit-resume.onrender.com/api/certificates";
+  const API = "https://ankit-resume-mauve.vercel.app/api/certificates";
 
 
   const [loading,setLoading] = useState(false);
