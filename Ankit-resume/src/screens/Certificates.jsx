@@ -1133,41 +1133,37 @@ export default function Certificates({ lightMode }) {
     sm:text-3xl
     font-bold
     text-teal-400
-    flex
-    items-center
-    gap-3
     "
   >
-    <FaUpload />
     Upload Your Certificate
   </h2>
 
 
   <button
     onClick={() => navigate("/uploadcertificates")}
+    title="Upload Certificate"
+
     className="
-    px-6
-    py-3
-    rounded-xl
+    w-12
+    h-12
+    rounded-full
     bg-teal-500
     hover:bg-teal-600
     text-white
     flex
     items-center
-    gap-3
+    justify-center
     shadow-xl
     transition-all
     duration-300
-    hover:scale-105
-    font-semibold
+    hover:scale-110
     "
   >
 
-    Upload Certificate
-
-    <FaUpload />
+    <FaUpload size={20}/>
 
   </button>
+
 
 </div>
 
