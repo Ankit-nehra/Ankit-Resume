@@ -1,38 +1,38 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./LockScreen.module.css";
-import wallpaper from "../assets/om.jpg"
-import profileImage from "../assets/photo.jpg"
+import wallpaper from "../assets/om.jpg";
+import profileImage from "../assets/photo.jpg";
 
 export default function LockScreen({ onUnlock }) {
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
+  const [statusTime, setStatusTime] = useState("");
   const [unlocking, setUnlocking] = useState(false);
-const [statusTime, setStatusTime] = useState("");
+
   const startY = useRef(0);
 
-  useEffect() => {
+  useEffect(() => {
     const updateTime = () => {
-  const now = new Date();
+      const now = new Date();
 
-  const h = String(now.getHours()).padStart(2, "0");
-  const m = String(now.getMinutes()).padStart(2, "0");
-  const s = String(now.getSeconds()).padStart(2, "0");
+      const h = String(now.getHours()).padStart(2, "0");
+      const m = String(now.getMinutes()).padStart(2, "0");
+      const s = String(now.getSeconds()).padStart(2, "0");
 
-  setTime(`${h}:${m}:${s}`);
-  setStatusTime(`${h}:${m}`);
+      setTime(`${h}:${m}:${s}`);
+      setStatusTime(`${h}:${m}`);
 
-  setDate(
-    now.toLocaleDateString([], {
-      weekday: "long",
-      month: "long",
-      day: "numeric",
-    })
-  );
-};
+      setDate(
+        now.toLocaleDateString([], {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+        })
+      );
     };
 
     updateTime();
-    const interval = setInterval(updateTime, 1000); // real-time clock
+    const interval = setInterval(updateTime, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -59,13 +59,13 @@ const [statusTime, setStatusTime] = useState("");
         backgroundImage: `url(${wallpaper})`,
       }}
     >
-      {/* top status bar */}
+      {/* Top Status Bar */}
       <div className={styles.statusBar}>
         <span>{statusTime}</span>
         <span>🔋 87%</span>
       </div>
 
-      {/* main content */}
+      {/* Main Content */}
       <div className={styles.center}>
         <img
           src={profileImage}
@@ -73,18 +73,18 @@ const [statusTime, setStatusTime] = useState("");
           className={styles.profile}
         />
 
-      <div className={styles.timeBox}>
-        <p className={styles.date}>{date}</p>
-        <h1 className={styles.time}>{time}</h1>
-      </div>
+        <div className={styles.timeBox}>
+          <p className={styles.date}>{date}</p>
+          <h1 className={styles.time}>{time}</h1>
+        </div>
 
         <div className={styles.card}>
-          <h2>Ankit Nehra</h2>
-          <p>| Full Stack Developer | <br/> Building Scalable Web Apps</p>
+          <h2>Amit Nehra</h2>
+          <p>Senior Manager – Strategy & Operations</p>
         </div>
       </div>
 
-      {/* swipe hint */}
+      {/* Swipe Hint */}
       <div className={styles.swipe}>
         <span>Swipe up</span>
         <div className={styles.arrow}>⌃</div>
