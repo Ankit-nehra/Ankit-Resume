@@ -84,14 +84,14 @@ function App() {
                 element={<Certificates lightMode={lightMode} />}
               />
               <Route
-path="uploadcertificates"
-element={
-    <UploadGuard>
-        <UploadCertificates 
-            lightMode={lightMode}
-        />
+  path="uploadcertificates"
+  element={
+    <UploadGuard lightMode={lightMode}>
+      <UploadCertificates 
+        lightMode={lightMode}
+      />
     </UploadGuard>
-}
+  }
 />
             </Route>
           </Routes>
