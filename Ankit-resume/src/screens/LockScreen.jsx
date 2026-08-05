@@ -7,26 +7,28 @@ export default function LockScreen({ onUnlock }) {
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
   const [unlocking, setUnlocking] = useState(false);
-
+const [statusTime, setStatusTime] = useState("");
   const startY = useRef(0);
 
   useEffect(() => {
     const updateTime = () => {
-      const now = new Date();
+  const now = new Date();
 
-      const h = String(now.getHours()).padStart(2, "0");
-      const m = String(now.getMinutes()).padStart(2, "0");
-      const s = String(now.getSeconds()).padStart(2, "0");
+  const h = String(now.getHours()).padStart(2, "0");
+  const m = String(now.getMinutes()).padStart(2, "0");
+  const s = String(now.getSeconds()).padStart(2, "0");
 
-      setTime(`${h}:${m}:${s}`);
+  setTime(`${h}:${m}:${s}`);
+  setStatusTime(`${h}:${m}`);
 
-      setDate(
-        now.toLocaleDateString([], {
-          weekday: "long",
-          month: "long",
-          day: "numeric",
-        })
-      );
+  setDate(
+    now.toLocaleDateString([], {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+    })
+  );
+};
     };
 
     updateTime();
@@ -59,7 +61,7 @@ export default function LockScreen({ onUnlock }) {
     >
       {/* top status bar */}
       <div className={styles.statusBar}>
-        <span>9:41</span>
+        <span>{statusTime}</span>
         <span>🔋 87%</span>
       </div>
 
