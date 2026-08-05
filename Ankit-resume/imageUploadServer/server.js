@@ -1,11 +1,11 @@
-
+// server.js
 import "dotenv/config";
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 
 
-
-import certificateRoutes from "./routes/certificateRoutes.js";
+import certificateRoutes from "./routes/certificateRoutes";
 
 
 
@@ -17,7 +17,12 @@ const app = express();
 
 // Middleware
 
-
+app.use(
+  cors({
+    origin: "https://ankit-resume-git-main-ankit-nehras-projects.vercel.app/",
+    credentials: true,
+  })
+);
 
 
 app.use(express.json());
@@ -85,7 +90,7 @@ app.post("/api/verify-upload", (req,res)=>{
 
 
     const {key}=req.body;
-
+console.log(key);
 
     if(key === process.env.UPLOAD_SECRET){
 
