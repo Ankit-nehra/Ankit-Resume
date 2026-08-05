@@ -10,7 +10,7 @@ export default function LockScreen({ onUnlock }) {
 const [statusTime, setStatusTime] = useState("");
   const startY = useRef(0);
 
-  useEffect(() => {
+  useEffect() => {
     const updateTime = () => {
   const now = new Date();
 
