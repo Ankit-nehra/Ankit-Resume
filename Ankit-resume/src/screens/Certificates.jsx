@@ -141,7 +141,6 @@ export default function Certificates({ lightMode }) {
 {/* Heading Row */}
 
 {/* Upload Button + Heading */}
-
 <div
   className="
   max-w-7xl
@@ -151,90 +150,23 @@ export default function Certificates({ lightMode }) {
   flex
   items-center
   justify-center
-  relative
   "
 >
-
-
-  {/* Upload Icon */}
-
-  <button
-
-    onClick={() => navigate("/uploadcertificates")}
-
-    title="Upload Certificate"
-
-    className={`
-    
-    absolute
-    left-4
-    sm:left-6
-
-    w-12
-    h-12
-
-    rounded-full
-
-    flex
-    items-center
-    justify-center
-
-    shadow-xl
-
-    hover:scale-110
-
-    transition-all
-    duration-300
-
-    bg-teal-500
-    hover:bg-teal-600
-    text-white
-
-    `}
-
-  >
-
-    <FaUpload size={20}/>
-
-  </button>
-
-
-
-
-  {/* Heading */}
-
   <h1
-
     className="
-
     text-center
-
     text-4xl
-
     sm:text-5xl
-
     font-bold
-
     text-teal-400
-
     flex
-
     items-center
-
     gap-3
-
     "
-
   >
-
     <FaGraduationCap/>
-
     Certificates
-
-
   </h1>
-
-
 </div>
 
 
@@ -1158,7 +1090,43 @@ export default function Certificates({ lightMode }) {
             </div>
 
 
+{/* Certificates Footer */}
 
+<div
+  className="
+  max-w-7xl
+  mx-auto
+  px-4
+  mt-12
+  flex
+  justify-end
+  "
+>
+
+  <button
+    onClick={() => navigate("/uploadcertificates")}
+    title="Upload Certificate"
+
+    className="
+    w-12
+    h-12
+    rounded-full
+    bg-teal-500
+    hover:bg-teal-600
+    text-white
+    flex
+    items-center
+    justify-center
+    shadow-xl
+    transition-all
+    duration-300
+    hover:scale-110
+    "
+  >
+    <FaUpload size={20}/>
+  </button>
+
+</div>
 
 
 
