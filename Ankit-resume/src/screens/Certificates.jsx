@@ -1090,6 +1090,12 @@ export default function Certificates({ lightMode }) {
             </div>
 
 
+
+
+          </div>
+
+
+
 {/* Certificates Footer */}
 
 <div
@@ -1127,12 +1133,6 @@ export default function Certificates({ lightMode }) {
   </button>
 
 </div>
-
-
-
-          </div>
-
-
 
         ))
 
