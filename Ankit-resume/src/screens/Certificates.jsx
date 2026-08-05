@@ -18,7 +18,7 @@ export default function Certificates({ lightMode }) {
 
   const navigate = useNavigate();
 
-
+const [selectedImage, setSelectedImage] = useState(null);
   const API = "https://ankit-resume.onrender.com/api/certificates";
 
 
@@ -502,44 +502,22 @@ export default function Certificates({ lightMode }) {
 
 
 
-              <img
+             <img
+  src={cert.imageUrl}
+  alt={cert.title}
 
+  onClick={() => setSelectedImage(cert.imageUrl)}
 
-
-                src={cert.imageUrl}
-
-
-
-                alt={cert.title}
-
-
-
-                className="
-
-
-                w-full
-
-
-                h-full
-
-
-                object-cover
-
-
-                transition-all
-
-
-                duration-500
-
-
-                hover:scale-110
-
-
-                "
-
-
-
-              />
+  className="
+  w-full
+  h-full
+  object-cover
+  transition-all
+  duration-500
+  hover:scale-110
+  cursor-pointer
+  "
+/>
 
 
 
@@ -1153,7 +1131,60 @@ export default function Certificates({ lightMode }) {
 
 </div>
 
+{
+  selectedImage && (
 
+    <div
+      onClick={() => setSelectedImage(null)}
+
+      className="
+      fixed
+      inset-0
+      z-50
+      bg-black/80
+      flex
+      items-center
+      justify-center
+      p-4
+      "
+    >
+
+      <img
+        src={selectedImage}
+
+        onClick={(e)=>e.stopPropagation()}
+
+        className="
+        max-w-full
+        max-h-full
+        rounded-xl
+        shadow-2xl
+        object-contain
+        "
+      />
+
+
+      <button
+
+        onClick={() => setSelectedImage(null)}
+
+        className="
+        absolute
+        top-5
+        right-5
+        text-white
+        text-3xl
+        font-bold
+        "
+      >
+        ×
+      </button>
+
+
+    </div>
+
+  )
+}
 
     </div>
 
