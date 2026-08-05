@@ -19,7 +19,7 @@ export default function Certificates({ lightMode }) {
   const navigate = useNavigate();
 
 const [selectedImage, setSelectedImage] = useState(null);
-  const API = "https://ankit-resume.onrender.com/api/certificates";
+  const API = "https://ankit-resume-mauve.vercel.app/api/certificates";
 
 
 
