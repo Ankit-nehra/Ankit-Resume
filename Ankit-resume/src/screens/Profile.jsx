@@ -120,7 +120,7 @@ I continuously learn new technologies, research better approaches and focus on w
         "Master of Computer Applications (MCA)",
 
         college:
-        "Geeta University, Panipat",
+        "Geeta University, Panipat, Haryana",
 
         year:
         "2024 - 2026",
@@ -137,7 +137,7 @@ I continuously learn new technologies, research better approaches and focus on w
         "Bachelor of Computer Applications (BCA)",
 
         college:
-        "Arya P.G College, Panipat",
+        "Arya P.G College, Panipat, Haryana",
 
         year:
         "2021 - 2024",
