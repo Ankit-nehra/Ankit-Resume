@@ -230,7 +230,7 @@ I continuously learn new technologies, research better approaches and focus on w
       "A production-oriented communication platform built with modern full-stack architecture supporting real-time messaging, authentication and video communication.",
 
 
-      github:"https://github.com/Ankit-nehra",
+      github:"https://github.com/Ankit-nehra/realtime-chat-app",
       demo:"https://microservice-based-realtime-chat-ap.vercel.app/",
 
 
@@ -261,8 +261,8 @@ I continuously learn new technologies, research better approaches and focus on w
       "A complete school management ERP platform designed to digitize academic operations using role-based dashboards and automated workflows.",
 
 
-      github:"https://github.com/Ankit-nehra",
-      demo:"https://erp-frontend-jxl2-green.vercel.app/",
+      github:"https://github.com/Ankit-nehra/erp-frontend",
+      demo:"https://erp-frontend-eight-iota.vercel.app/",
 
 
       technologies:[
