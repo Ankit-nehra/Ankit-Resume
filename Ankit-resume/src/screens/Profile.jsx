@@ -126,7 +126,7 @@ I continuously learn new technologies, research better approaches and focus on w
         "2024 - 2026",
 
         score:
-        "Percentage: 87.85"
+        "Percentage: 87.85%"
 
       },
 
@@ -143,7 +143,7 @@ I continuously learn new technologies, research better approaches and focus on w
         "2021 - 2024",
 
         score:
-        "Percentage: 73.97"
+        "Percentage: 73.97%"
 
       }
 
