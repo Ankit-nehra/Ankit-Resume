@@ -126,7 +126,7 @@ I continuously learn new technologies, research better approaches and focus on w
         "2024 - 2026",
 
         score:
-        "Overall Percentage: 87.85%"
+        "Overall CGPA: 8.78"
 
       },
 
@@ -143,7 +143,7 @@ I continuously learn new technologies, research better approaches and focus on w
         "2021 - 2024",
 
         score:
-        "Overall Percentage: 73.97%"
+        "Overall CGPA: 7.39"
 
       }
 
