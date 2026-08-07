@@ -268,7 +268,7 @@ text-transparent
 
 >
 
-Achievements & Projects
+Achievements, Projects & Research
 
 </h1>
 
