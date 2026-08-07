@@ -14,7 +14,7 @@ import {
 
 
 export default function Certificates({ lightMode }) {
-
+const [selectedDescription, setSelectedDescription] = useState(null);
 
   const navigate = useNavigate();
 
@@ -864,56 +864,44 @@ Array.from({ length: 6 }).map((_, index) => (
 
 
               {
+  cert.description &&
+  (
+    <div className="mt-5">
+
+      <p
+        className="
+        text-sm
+        opacity-80
+        line-clamp-3
+        leading-relaxed
+        "
+      >
+        {cert.description}
+      </p>
 
 
-                cert.description &&
+      {
+        cert.description.length > 150 &&
+        (
+          <button
+            onClick={() => setSelectedDescription(cert)}
+            className="
+            mt-3
+            text-teal-400
+            text-sm
+            font-semibold
+            hover:text-teal-300
+            transition
+            "
+          >
+            Read More →
+          </button>
+        )
+      }
 
-
-
-                (
-
-
-
-                  <p
-
-
-
-                    className="
-
-
-                    mt-5
-
-
-                    text-sm
-
-
-                    opacity-80
-
-
-                    line-clamp-4
-
-
-                    "
-
-
-
-                  >
-
-
-
-                    {cert.description}
-
-
-
-                  </p>
-
-
-
-                )
-
-
-
-              }
+    </div>
+  )
+}
 
 
 
@@ -1106,6 +1094,101 @@ Array.from({ length: 6 }).map((_, index) => (
   </button>
 
 </div>
+
+      {
+selectedDescription && (
+
+<div
+onClick={() => setSelectedDescription(null)}
+
+className="
+fixed
+inset-0
+z-50
+bg-black/80
+flex
+items-center
+justify-center
+p-5
+"
+>
+
+<div
+onClick={(e)=>e.stopPropagation()}
+
+className={`
+max-w-2xl
+w-full
+rounded-3xl
+p-8
+shadow-2xl
+border
+
+${
+lightMode
+?
+"bg-white border-gray-200 text-gray-800"
+:
+"bg-gray-900 border-white/10 text-white"
+}
+
+`}
+>
+
+
+<span
+className="
+px-4
+py-1
+rounded-full
+text-xs
+bg-teal-500/10
+border
+border-teal-400/30
+text-teal-400
+"
+>
+Certificate Details
+</span>
+
+
+<h2 className="text-2xl font-bold mt-5">
+{selectedDescription.title}
+</h2>
+
+
+<p className="mt-5 leading-relaxed opacity-80">
+{selectedDescription.description}
+</p>
+
+
+<button
+
+onClick={()=>setSelectedDescription(null)}
+
+className="
+mt-6
+px-5
+py-2
+rounded-xl
+bg-teal-500
+text-white
+hover:bg-teal-600
+transition
+"
+
+>
+Close
+</button>
+
+
+</div>
+
+
+</div>
+
+)
+}
 
 {
   selectedImage && (
