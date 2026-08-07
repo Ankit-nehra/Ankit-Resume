@@ -150,7 +150,7 @@ technologies:[
 "Docker"
 ],
 
-pdf:"YOUR_CLOUDINARY_URL"
+pdf:"https://collection.cloudinary.com/dhslfpaio/86614cd8765e5de0a75559c491be96c5"
 
 },
 
