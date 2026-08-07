@@ -11,6 +11,11 @@ import {
   FaChartLine,
   FaGithub,
   FaExternalLinkAlt,
+  FaGraduationCap,
+  FaFileAlt,
+  FaBookOpen,
+  FaChartLine,
+  FaLink,
 } from "react-icons/fa";
 
 
@@ -122,6 +127,42 @@ icon:<FaGraduationCap/>
 
 ];
 
+
+const dissertation = {
+  title: "Master's Dissertation",
+  subtitle:
+    "Microservice-Based Real-Time Chat Application Using MERN Stack and Socket.IO",
+
+  description:
+    "Master's research focused on designing, implementing and evaluating a scalable microservices-based real-time communication system with comprehensive performance analysis.",
+
+  doi: "https://doi.org/10.5281/zenodo.20078376",
+
+  pdf: "/dissertation.pdf", // Cloudinary URL
+
+  stats: [
+    {
+      icon: <FaLayerGroup />,
+      title: "Architecture",
+      value: "Microservices + API Gateway",
+    },
+    {
+      icon: <FaServer />,
+      title: "Backend",
+      value: "Node.js • Express.js",
+    },
+    {
+      icon: <FaDatabase />,
+      title: "Storage",
+      value: "MongoDB + Redis",
+    },
+    {
+      icon: <FaChartLine />,
+      title: "Evaluation",
+      value: "Latency • Throughput • Load Testing",
+    },
+  ],
+};
 
 
 
@@ -626,7 +667,66 @@ text-teal-500
 
 
 
+<h2 className="text-2xl font-bold text-teal-400 mb-6 flex items-center gap-2">
+  <FaGraduationCap />
+  Master's Dissertation
+</h2>
 
+<div
+  className={`rounded-3xl p-8 border backdrop-blur-xl ${
+    lightMode
+      ? "bg-white border-gray-200 shadow-lg"
+      : "bg-white/5 border-white/10"
+  }`}
+>
+  <h3 className="text-2xl font-bold">
+    {dissertation.subtitle}
+  </h3>
+
+  <p className="mt-4 text-gray-400 leading-8">
+    {dissertation.description}
+  </p>
+
+  <div className="grid md:grid-cols-2 gap-4 mt-8">
+    {dissertation.stats.map((item, i) => (
+      <div
+        key={i}
+        className="rounded-xl border border-teal-500/20 p-4 bg-teal-500/5"
+      >
+        <div className="flex items-center gap-3 text-teal-400">
+          {item.icon}
+          <span className="font-semibold">{item.title}</span>
+        </div>
+
+        <p className="mt-2 text-gray-400">
+          {item.value}
+        </p>
+      </div>
+    ))}
+  </div>
+
+  <div className="flex flex-wrap gap-4 mt-8">
+
+    <a
+      href={dissertation.pdf}
+      target="_blank"
+      className="px-5 py-3 rounded-xl bg-teal-500 text-white flex items-center gap-2"
+    >
+      <FaBookOpen />
+      Read Dissertation
+    </a>
+
+    <a
+      href={dissertation.doi}
+      target="_blank"
+      className="px-5 py-3 rounded-xl border border-teal-500 text-teal-400 flex items-center gap-2"
+    >
+      <FaLink />
+      View Research Paper
+    </a>
+
+  </div>
+</div>
 
 
 
