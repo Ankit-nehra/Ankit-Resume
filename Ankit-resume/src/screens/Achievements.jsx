@@ -126,83 +126,52 @@ icon:<FaGraduationCap/>
 ];
 
 
-const dissertation = {
-  title: "Master's Dissertation",
-  subtitle:
-    "Microservice-Based Real-Time Chat Application Using MERN Stack and Socket.IO",
 
-  description:
-    "Designed, implemented, and evaluated a scalable microservices-based real-time communication system using the MERN stack, Redis, Socket.IO, and API Gateway, including performance evaluation through latency, throughput, and load testing.",
-
-  doi: "https://doi.org/10.5281/zenodo.20078376",
-
-  pdf: "/dissertation.pdf", // Cloudinary URL
-
-  stats: [
-    {
-      icon: <FaLayerGroup />,
-      title: "Architecture",
-      value: "Microservices + API Gateway",
-    },
-    {
-      icon: <FaServer />,
-      title: "Backend",
-      value: "Node.js • Express.js",
-    },
-    {
-      icon: <FaDatabase />,
-      title: "Storage",
-      value: "MongoDB + Redis",
-    },
-    {
-      icon: <FaChartLine />,
-      title: "Evaluation",
-      value: "Latency • Throughput • Load Testing",
-    },
-  ],
-};
 
 const research = {
-  dissertation: {
-    label: "MASTER'S DISSERTATION",
 
-    title:
-      "Microservice-Based Real-Time Chat Application Using MERN Stack and Socket.IO",
+dissertation:{
+label:"MASTER'S DISSERTATION",
 
-    description:
-      "Designed, implemented, and evaluated a scalable real-time communication platform using MERN stack, Socket.IO, Redis, and API Gateway-based microservices architecture. The system was analyzed through performance metrics including latency, throughput, concurrent user handling, and scalability evaluation.",
+title:
+"Microservice-Based Real-Time Chat Application Using MERN Stack and Socket.IO",
 
-    pdf: "/dissertation.pdf",
+description:
+"Designed and evaluated a scalable real-time communication platform using microservices architecture, MERN stack, Redis, Socket.IO and API Gateway. The system was analyzed using performance metrics including latency, throughput and concurrent user handling.",
 
-    technologies: [
-      "React.js",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Redis",
-      "Socket.IO",
-      "WebRTC",
-      "Docker"
-    ]
-  },
+technologies:[
+"React.js",
+"Node.js",
+"Express.js",
+"MongoDB",
+"Redis",
+"Socket.IO",
+"WebRTC",
+"Docker"
+],
+
+pdf:"YOUR_CLOUDINARY_URL"
+
+},
 
 
-  publication: {
+publication:{
 
-    label:"RESEARCH PUBLICATION",
+label:"RESEARCH PUBLICATION",
 
-    title:
-      "Design and Implementation of a Scalable Microservice-Based E-Commerce Web Application Using the MERN Stack with Performance Analysis",
+title:
+"Design and Implementation of a Scalable Microservice-Based E-Commerce Web Application Using the MERN Stack with Performance Analysis",
 
-    description:
-      "Research paper presenting the design, implementation, and performance evaluation of a scalable microservice-based e-commerce platform. The study explores service decomposition, API Gateway architecture, Docker-based deployment, and scalability analysis under concurrent workloads.",
+description:
+"Research paper presenting the design and performance evaluation of a scalable microservice-based e-commerce system. The study explores service decomposition, API Gateway architecture, Docker deployment and scalability analysis under concurrent workloads.",
 
-    doi:
-      "https://doi.org/10.5281/zenodo.20078376"
+doi:
+"https://doi.org/10.5281/zenodo.20078376"
 
-  }
+}
+
 };
-
+  
 
 const technicalAchievements=[
 
@@ -702,11 +671,9 @@ text-teal-500
 
 </div>
 
-
 <section className="mt-20">
 
-<h2
-className="
+<h2 className="
 text-3xl
 font-bold
 text-teal-400
@@ -714,83 +681,78 @@ mb-8
 flex
 items-center
 gap-3
-"
->
+">
 <FaGraduationCap/>
 Research & Publications
 </h2>
 
 
-<div
-className={`
-rounded-3xl
-p-8
-border
-backdrop-blur-xl
-
-${
-lightMode
-?
-"bg-white border-gray-200 shadow-lg"
-:
-"bg-white/5 border-white/10"
-}
-
-`}
->
+<div className="grid grid-cols-1 gap-8">
 
 
 {/* Dissertation */}
 
-<div>
-
-<span
-className="
-px-4
-py-1
-rounded-full
-text-xs
-font-semibold
-tracking-wider
-bg-teal-500/10
+<div className={`
+rounded-3xl
+p-8
 border
-border-teal-400/30
-text-teal-400
-"
->
-{research.dissertation.label}
-</span>
-
-
-<h3
-className={`
-mt-5
-text-2xl
-font-bold
+backdrop-blur-xl
+transition
+hover:-translate-y-1
 
 ${
 lightMode
 ?
-"text-gray-900"
+"bg-white shadow-lg border-gray-200"
 :
-"text-white"
+"bg-white/5 border-white/10"
 }
 
-`}
->
+`}>
+
+<div className="
+flex
+items-center
+gap-3
+mb-4
+">
+
+<FaFileAlt className="text-teal-400 text-3xl"/>
+
+<span className="
+px-4
+py-1
+rounded-full
+text-xs
+bg-teal-500/10
+border
+border-teal-400/30
+text-teal-400
+">
+
+{research.dissertation.label}
+
+</span>
+
+</div>
+
+
+<h3 className="
+text-2xl
+font-bold
+text-white
+">
 
 {research.dissertation.title}
 
 </h3>
 
 
-<p
-className="
+<p className="
 mt-4
-leading-relaxed
 text-gray-400
-"
->
+leading-relaxed
+">
 
 {research.dissertation.description}
 
@@ -798,20 +760,17 @@ text-gray-400
 
 
 
-<div
-className="
+<div className="
 flex
 flex-wrap
 gap-3
 mt-6
-"
->
+">
 
 {
-research.dissertation.technologies.map((tech,index)=>(
-
+research.dissertation.technologies.map((tech)=>(
 <span
-key={index}
+key={tech}
 className="
 px-3
 py-1
@@ -827,7 +786,6 @@ text-teal-400
 {tech}
 
 </span>
-
 ))
 }
 
@@ -835,29 +793,20 @@ text-teal-400
 
 
 
-<div
-className="
-flex
-gap-4
-mt-8
-"
->
-
-
 <a
 href={research.dissertation.pdf}
 target="_blank"
 className="
-flex
+inline-flex
+mt-8
 items-center
 gap-2
-px-5
+px-6
 py-3
 rounded-xl
 bg-teal-500
 text-white
 hover:bg-teal-600
-transition
 "
 >
 
@@ -869,105 +818,99 @@ Read Dissertation
 
 </div>
 
-</div>
+
+
+{/* Publication */}
+
+
+<div className={`
+rounded-3xl
+p-8
+border
+backdrop-blur-xl
+
+${
+lightMode
+?
+"bg-white shadow-lg border-gray-200"
+:
+"bg-white/5 border-white/10"
+}
+
+`}>
 
 
 
-<hr className="
-my-10
-border-white/10
-"/>
+<div className="
+flex
+items-center
+gap-3
+mb-4
+">
+
+<FaLink className="text-blue-400 text-3xl"/>
 
 
-
-{/* Research Paper */}
-
-
-<div>
-
-
-<span
-className="
+<span className="
 px-4
 py-1
 rounded-full
 text-xs
-font-semibold
-tracking-wider
 bg-blue-500/10
 border
 border-blue-400/30
 text-blue-400
-"
->
+">
 
 {research.publication.label}
 
 </span>
 
+</div>
 
 
-<h3
-className={`
-mt-5
+
+<h3 className="
 text-2xl
 font-bold
-
-${
-lightMode
-?
-"text-gray-900"
-:
-"text-white"
-}
-
-`}
->
+text-white
+">
 
 {research.publication.title}
 
 </h3>
 
 
-
-<p
-className="
+<p className="
 mt-4
-leading-relaxed
 text-gray-400
-"
->
+leading-relaxed
+">
 
 {research.publication.description}
 
 </p>
 
 
-
 <a
-
 href={research.publication.doi}
-
 target="_blank"
-
 className="
 inline-flex
+mt-8
 items-center
 gap-2
-mt-7
-px-5
+px-6
 py-3
 rounded-xl
 border
 border-blue-400
 text-blue-400
 hover:bg-blue-500/10
-transition
 "
-
 >
 
-<FaLink/>
+<FaExternalLinkAlt/>
 
 View DOI Publication
 
