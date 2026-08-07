@@ -1014,7 +1014,7 @@ Array.from({ length: 6 }).map((_, index) => (
 
 
 
-                    View Certificate
+                    Verify Certificate
 
 
 
