@@ -226,64 +226,40 @@ const [selectedImage, setSelectedImage] = useState(null);
 
 
 
-          Array
-          .from({length:6})
-          .map((_,index)=>(
+Array.from({ length: 6 }).map((_, index) => (
+  <div
+    key={index}
+    className={`
+      rounded-3xl
+      overflow-hidden
+      animate-pulse
+      ${
+        lightMode
+          ? "bg-white border border-gray-200"
+          : "bg-gray-800 border border-white/10"
+      }
+    `}
+  >
+    <div className="h-60 bg-gray-300 dark:bg-gray-700"></div>
 
+    <div className="p-6 space-y-4">
+      <div className="h-6 w-3/4 rounded bg-gray-300 dark:bg-gray-700"></div>
 
-            <div
+      <div className="h-4 w-1/2 rounded bg-gray-300 dark:bg-gray-700"></div>
 
+      <div className="h-4 w-2/3 rounded bg-gray-300 dark:bg-gray-700"></div>
 
-              key={index}
+      <div className="flex gap-2">
+        <div className="h-6 w-16 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+        <div className="h-6 w-20 rounded-full bg-gray-300 dark:bg-gray-700"></div>
+      </div>
 
+      <div className="h-20 rounded bg-gray-300 dark:bg-gray-700"></div>
 
-
-              className={`
-
-
-
-              h-[430px]
-
-
-              rounded-3xl
-
-
-              animate-pulse
-
-
-
-
-              ${
-
-
-                lightMode
-
-
-                ?
-
-
-                "bg-gray-200"
-
-
-                :
-
-
-                "bg-gray-800"
-
-
-              }
-
-
-
-
-              `}
-
-
-
-            />
-
-
-          ))
+      <div className="h-10 rounded-xl bg-gray-300 dark:bg-gray-700"></div>
+    </div>
+  </div>
+))
 
 
 
