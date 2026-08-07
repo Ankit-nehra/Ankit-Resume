@@ -670,45 +670,55 @@ text-teal-500
 
 
 </div>
+{/* Research & Publications */}
 
-<section className="mt-20">
+<div className="mt-16">
 
 <h2 className="
-text-3xl
+text-2xl
 font-bold
 text-teal-400
-mb-8
+mb-6
 flex
 items-center
-gap-3
+gap-2
 ">
 <FaGraduationCap/>
 Research & Publications
 </h2>
 
 
-<div className="grid grid-cols-1 gap-8">
+<div className="
+grid
+md:grid-cols-2
+gap-8
+">
 
 
-{/* Dissertation */}
+{/* Dissertation Card */}
 
-<div className={`
+<div
+className={`
 rounded-3xl
-p-8
+p-6 sm:p-8
 border
 backdrop-blur-xl
-transition
-hover:-translate-y-1
+transition-all
+duration-500
+hover:-translate-y-2
+hover:shadow-2xl
 
 ${
 lightMode
 ?
-"bg-white shadow-lg border-gray-200"
+"bg-white/80 border-gray-200 shadow-lg"
 :
 "bg-white/5 border-white/10"
 }
 
-`}>
+`}
+>
+
 
 <div className="
 flex
@@ -717,13 +727,20 @@ gap-3
 mb-4
 ">
 
-<FaFileAlt className="text-teal-400 text-3xl"/>
+<FaFileAlt 
+className="
+text-3xl
+text-teal-400
+"
+/>
+
 
 <span className="
 px-4
 py-1
 rounded-full
 text-xs
+font-semibold
 bg-teal-500/10
 border
 border-teal-400/30
@@ -737,22 +754,41 @@ text-teal-400
 </div>
 
 
-<h3 className="
-text-2xl
+
+<h3 className={`
+text-xl
+sm:text-2xl
 font-bold
-text-white
-">
+
+${
+lightMode
+?
+"text-gray-800"
+:
+"text-white"
+}
+
+`}>
 
 {research.dissertation.title}
 
 </h3>
 
 
-<p className="
+
+<p className={`
 mt-4
-text-gray-400
 leading-relaxed
-">
+
+${
+lightMode
+?
+"text-gray-700"
+:
+"text-gray-300"
+}
+
+`}>
 
 {research.dissertation.description}
 
@@ -764,7 +800,7 @@ leading-relaxed
 flex
 flex-wrap
 gap-3
-mt-6
+mt-5
 ">
 
 {
@@ -798,19 +834,21 @@ href={research.dissertation.pdf}
 target="_blank"
 className="
 inline-flex
-mt-8
+mt-7
 items-center
 gap-2
-px-6
+px-5
 py-3
 rounded-xl
 bg-teal-500
 text-white
 hover:bg-teal-600
+transition
 "
 >
 
 <FaBookOpen/>
+
 Read Dissertation
 
 </a>
@@ -820,25 +858,32 @@ Read Dissertation
 
 
 
-{/* Publication */}
 
 
-<div className={`
+{/* Publication Card */}
+
+
+<div
+className={`
 rounded-3xl
-p-8
+p-6 sm:p-8
 border
 backdrop-blur-xl
+transition-all
+duration-500
+hover:-translate-y-2
+hover:shadow-2xl
 
 ${
 lightMode
 ?
-"bg-white shadow-lg border-gray-200"
+"bg-white/80 border-gray-200 shadow-lg"
 :
 "bg-white/5 border-white/10"
 }
 
-`}>
-
+`}
+>
 
 
 <div className="
@@ -848,7 +893,12 @@ gap-3
 mb-4
 ">
 
-<FaLink className="text-blue-400 text-3xl"/>
+<FaLink
+className="
+text-3xl
+text-blue-400
+"
+/>
 
 
 <span className="
@@ -856,6 +906,7 @@ px-4
 py-1
 rounded-full
 text-xs
+font-semibold
 bg-blue-500/10
 border
 border-blue-400/30
@@ -870,26 +921,45 @@ text-blue-400
 
 
 
-<h3 className="
-text-2xl
+<h3 className={`
+text-xl
+sm:text-2xl
 font-bold
-text-white
-">
+
+${
+lightMode
+?
+"text-gray-800"
+:
+"text-white"
+}
+
+`}>
 
 {research.publication.title}
 
 </h3>
 
 
-<p className="
+
+<p className={`
 mt-4
-text-gray-400
 leading-relaxed
-">
+
+${
+lightMode
+?
+"text-gray-700"
+:
+"text-gray-300"
+}
+
+`}>
 
 {research.publication.description}
 
 </p>
+
 
 
 <a
@@ -897,16 +967,17 @@ href={research.publication.doi}
 target="_blank"
 className="
 inline-flex
-mt-8
+mt-7
 items-center
 gap-2
-px-6
+px-5
 py-3
 rounded-xl
 border
 border-blue-400
 text-blue-400
 hover:bg-blue-500/10
+transition
 "
 >
 
@@ -920,10 +991,10 @@ View DOI Publication
 </div>
 
 
+
 </div>
 
-</section>
-
+</div>
 
 
 
