@@ -11,10 +11,8 @@ import {
   FaChartLine,
   FaGithub,
   FaExternalLinkAlt,
-  FaGraduationCap,
   FaFileAlt,
   FaBookOpen,
-  FaChartLine,
   FaLink,
 } from "react-icons/fa";
 
