@@ -132,7 +132,7 @@ const dissertation = {
     "Microservice-Based Real-Time Chat Application Using MERN Stack and Socket.IO",
 
   description:
-    "Master's research focused on designing, implementing and evaluating a scalable microservices-based real-time communication system with comprehensive performance analysis.",
+    "Designed, implemented, and evaluated a scalable microservices-based real-time communication system using the MERN stack, Redis, Socket.IO, and API Gateway, including performance evaluation through latency, throughput, and load testing.",
 
   doi: "https://doi.org/10.5281/zenodo.20078376",
 
@@ -162,7 +162,46 @@ const dissertation = {
   ],
 };
 
+const research = {
+  dissertation: {
+    label: "MASTER'S DISSERTATION",
 
+    title:
+      "Microservice-Based Real-Time Chat Application Using MERN Stack and Socket.IO",
+
+    description:
+      "Designed, implemented, and evaluated a scalable real-time communication platform using MERN stack, Socket.IO, Redis, and API Gateway-based microservices architecture. The system was analyzed through performance metrics including latency, throughput, concurrent user handling, and scalability evaluation.",
+
+    pdf: "/dissertation.pdf",
+
+    technologies: [
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Redis",
+      "Socket.IO",
+      "WebRTC",
+      "Docker"
+    ]
+  },
+
+
+  publication: {
+
+    label:"RESEARCH PUBLICATION",
+
+    title:
+      "Design and Implementation of a Scalable Microservice-Based E-Commerce Web Application Using the MERN Stack with Performance Analysis",
+
+    description:
+      "Research paper presenting the design, implementation, and performance evaluation of a scalable microservice-based e-commerce platform. The study explores service decomposition, API Gateway architecture, Docker-based deployment, and scalability analysis under concurrent workloads.",
+
+    doi:
+      "https://doi.org/10.5281/zenodo.20078376"
+
+  }
+};
 
 
 const technicalAchievements=[
@@ -664,67 +703,283 @@ text-teal-500
 </div>
 
 
+<section className="mt-20">
 
-<h2 className="text-2xl font-bold text-teal-400 mb-6 flex items-center gap-2">
-  <FaGraduationCap />
-  Master's Dissertation
+<h2
+className="
+text-3xl
+font-bold
+text-teal-400
+mb-8
+flex
+items-center
+gap-3
+"
+>
+<FaGraduationCap/>
+Research & Publications
 </h2>
 
+
 <div
-  className={`rounded-3xl p-8 border backdrop-blur-xl ${
-    lightMode
-      ? "bg-white border-gray-200 shadow-lg"
-      : "bg-white/5 border-white/10"
-  }`}
+className={`
+rounded-3xl
+p-8
+border
+backdrop-blur-xl
+
+${
+lightMode
+?
+"bg-white border-gray-200 shadow-lg"
+:
+"bg-white/5 border-white/10"
+}
+
+`}
 >
-  <h3 className="text-2xl font-bold">
-    {dissertation.subtitle}
-  </h3>
 
-  <p className="mt-4 text-gray-400 leading-8">
-    {dissertation.description}
-  </p>
 
-  <div className="grid md:grid-cols-2 gap-4 mt-8">
-    {dissertation.stats.map((item, i) => (
-      <div
-        key={i}
-        className="rounded-xl border border-teal-500/20 p-4 bg-teal-500/5"
-      >
-        <div className="flex items-center gap-3 text-teal-400">
-          {item.icon}
-          <span className="font-semibold">{item.title}</span>
-        </div>
+{/* Dissertation */}
 
-        <p className="mt-2 text-gray-400">
-          {item.value}
-        </p>
-      </div>
-    ))}
-  </div>
+<div>
 
-  <div className="flex flex-wrap gap-4 mt-8">
+<span
+className="
+px-4
+py-1
+rounded-full
+text-xs
+font-semibold
+tracking-wider
+bg-teal-500/10
+border
+border-teal-400/30
+text-teal-400
+"
+>
+{research.dissertation.label}
+</span>
 
-    <a
-      href={dissertation.pdf}
-      target="_blank"
-      className="px-5 py-3 rounded-xl bg-teal-500 text-white flex items-center gap-2"
-    >
-      <FaBookOpen />
-      Read Dissertation
-    </a>
 
-    <a
-      href={dissertation.doi}
-      target="_blank"
-      className="px-5 py-3 rounded-xl border border-teal-500 text-teal-400 flex items-center gap-2"
-    >
-      <FaLink />
-      View Research Paper
-    </a>
+<h3
+className={`
+mt-5
+text-2xl
+font-bold
 
-  </div>
+${
+lightMode
+?
+"text-gray-900"
+:
+"text-white"
+}
+
+`}
+>
+
+{research.dissertation.title}
+
+</h3>
+
+
+<p
+className="
+mt-4
+leading-relaxed
+text-gray-400
+"
+>
+
+{research.dissertation.description}
+
+</p>
+
+
+
+<div
+className="
+flex
+flex-wrap
+gap-3
+mt-6
+"
+>
+
+{
+research.dissertation.technologies.map((tech,index)=>(
+
+<span
+key={index}
+className="
+px-3
+py-1
+rounded-full
+text-xs
+bg-teal-500/10
+border
+border-teal-400/30
+text-teal-400
+"
+>
+
+{tech}
+
+</span>
+
+))
+}
+
 </div>
+
+
+
+<div
+className="
+flex
+gap-4
+mt-8
+"
+>
+
+
+<a
+href={research.dissertation.pdf}
+target="_blank"
+className="
+flex
+items-center
+gap-2
+px-5
+py-3
+rounded-xl
+bg-teal-500
+text-white
+hover:bg-teal-600
+transition
+"
+>
+
+<FaBookOpen/>
+Read Dissertation
+
+</a>
+
+
+</div>
+
+</div>
+
+
+
+<hr className="
+my-10
+border-white/10
+"/>
+
+
+
+{/* Research Paper */}
+
+
+<div>
+
+
+<span
+className="
+px-4
+py-1
+rounded-full
+text-xs
+font-semibold
+tracking-wider
+bg-blue-500/10
+border
+border-blue-400/30
+text-blue-400
+"
+>
+
+{research.publication.label}
+
+</span>
+
+
+
+<h3
+className={`
+mt-5
+text-2xl
+font-bold
+
+${
+lightMode
+?
+"text-gray-900"
+:
+"text-white"
+}
+
+`}
+>
+
+{research.publication.title}
+
+</h3>
+
+
+
+<p
+className="
+mt-4
+leading-relaxed
+text-gray-400
+"
+>
+
+{research.publication.description}
+
+</p>
+
+
+
+<a
+
+href={research.publication.doi}
+
+target="_blank"
+
+className="
+inline-flex
+items-center
+gap-2
+mt-7
+px-5
+py-3
+rounded-xl
+border
+border-blue-400
+text-blue-400
+hover:bg-blue-500/10
+transition
+"
+
+>
+
+<FaLink/>
+
+View DOI Publication
+
+</a>
+
+
+</div>
+
+
+</div>
+
+</section>
 
 
 
