@@ -79,8 +79,7 @@ export default function LockScreen({ onUnlock }) {
         </div>
 
         <div className={styles.card}>
-          <h2>Ankit Nehra</h2>
-          <p><ul>Full Stack Developer</ul> <br/>• Building Scalable Web Apps</p>
+          <h2>Ankit Nehra</h2>          
           <p>| Full Stack Developer | <br/> Building Scalable Web Apps</p>
         </div>
       </div>
