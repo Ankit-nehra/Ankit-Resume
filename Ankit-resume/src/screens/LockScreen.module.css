@@ -645,21 +645,28 @@
 /* =========================================================
    ARROW
    ========================================================= */
-
 .arrow {
-  font-size: 22px;
+  width: 32px;
+  height: 32px;
 
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  transform: rotate(180deg);
-
-  color: #2dd4bf;
-
-  text-shadow:
-    0 0 10px rgba(45, 212, 191, 0.5),
-    0 0 20px rgba(45, 212, 191, 0.2);
+  animation: swipeUp 1.5s ease-in-out infinite;
 }
 
+.arrow span {
+  width: 12px;
+  height: 12px;
+
+  display: block;
+
+  border-left: 3px solid rgba(255, 255, 255, 0.9);
+  border-top: 3px solid rgba(255, 255, 255, 0.9);
+
+  transform: rotate(45deg);
+}
 
 /* =========================================================
    FLOATING SKILLS
