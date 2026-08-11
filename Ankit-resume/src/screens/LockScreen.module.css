@@ -3,107 +3,970 @@
   width: 100%;
   position: relative;
   overflow: hidden;
+
   color: white;
-    background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
+  background: #020807;
+
   transition: transform 0.5s ease;
 
+  user-select: none;
+  -webkit-user-select: none;
+
+  touch-action: none;
 }
 
-/* unlock animation */
+
+/* =========================================================
+   UNLOCK ANIMATION
+   ========================================================= */
+
 .unlock {
   transform: translateY(-100%);
 }
 
-/* status bar */
-.statusBar {
+
+/* =========================================================
+   ANIMATED SKILL BACKGROUND
+   ========================================================= */
+
+.skillBackground {
   position: absolute;
-  top: 10px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 20px;
-  font-size: 12px;
-  opacity: 0.7;
+  inset: 0;
+
+  overflow: hidden;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(16, 185, 129, 0.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(212, 175, 55, 0.12),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 10% 85%,
+      rgba(20, 184, 166, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #020807 0%,
+      #031a15 45%,
+      #020b09 70%,
+      #010605 100%
+    );
 }
 
-/* center content */
-.center {
+
+/* =========================================================
+   GREEN AMBIENT GLOW
+   ========================================================= */
+
+.greenGlow {
+  position: absolute;
+
+  width: 480px;
+  height: 480px;
+
+  left: 50%;
+  top: 45%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: rgba(16, 185, 129, 0.14);
+
+  filter: blur(110px);
+
+  animation: greenPulse 6s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   GOLD AMBIENT GLOW
+   ========================================================= */
+
+.goldGlow {
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  right: -80px;
+  top: 5%;
+
+  border-radius: 50%;
+
+  background: rgba(212, 175, 55, 0.1);
+
+  filter: blur(100px);
+
+  animation: goldPulse 8s ease-in-out infinite;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   GLASS ORBITS
+   ========================================================= */
+
+.orbit {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border: 1px solid rgba(16, 185, 129, 0.2);
+
+  border-radius: 35%;
+
+  box-shadow:
+    inset 0 0 40px rgba(16, 185, 129, 0.08),
+    0 0 40px rgba(16, 185, 129, 0.04);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  pointer-events: none;
+}
+
+
+/* Main emerald orbit */
+
+.orbitOne {
+  width: 380px;
+  height: 380px;
+
+  animation: orbitOne 22s linear infinite;
+}
+
+
+/* Secondary gold orbit */
+
+.orbitTwo {
+  width: 540px;
+  height: 320px;
+
+  border-color: rgba(212, 175, 55, 0.16);
+
+  animation: orbitTwo 28s linear infinite reverse;
+}
+
+
+/* =========================================================
+   SKILL ICONS
+   ========================================================= */
+
+.skill {
+  position: absolute;
+
+  left: var(--x);
+  top: var(--y);
+
   display: flex;
+
   flex-direction: column;
   align-items: center;
-  padding-top: 100px;
-  text-align: center;
+
+  justify-content: center;
+
+  gap: 5px;
+
+  color: var(--color);
+
+  font-size: 32px;
+
+  opacity: 0.65;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  filter:
+    drop-shadow(0 0 6px var(--color))
+    drop-shadow(0 0 14px color-mix(
+      in srgb,
+      var(--color) 35%,
+      transparent
+    ));
+
+  animation:
+    floating
+    var(--duration)
+    ease-in-out
+    var(--delay)
+    infinite;
 }
+
+
+/* Technology name */
+
+.skill span {
+  font-size: 8px;
+
+  font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+  font-weight: 500;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  letter-spacing: 0.08em;
+
+  white-space: nowrap;
+
+  text-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+
+/* =========================================================
+   CENTER DARK OVERLAY / VIGNETTE
+   ========================================================= */
+
+.overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 5;
+
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgba(0, 0, 0, 0.03) 30%,
+      rgba(0, 0, 0, 0.20) 58%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+}
+
+
+/* =========================================================
+   TOP STATUS BAR
+   ========================================================= */
+
+.statusBar {
+  position: absolute;
+
+  top: 10px;
+
+  left: 0;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 0 20px;
+
+  font-size: 12px;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  opacity: 0.85;
+
+  z-index: 20;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CENTER CONTENT
+   ========================================================= */
+
+.center {
+  position: relative;
+
+  z-index: 15;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: flex-start;
+
+  padding-top: 100px;
+
+  text-align: center;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+   ========================================================= */
 
 .profile {
   width: 120px;
   height: 120px;
+
   border-radius: 50%;
+
   border: 3px solid #14b8a6;
+
   margin-bottom: 12px;
+
   object-fit: cover;
+
+  box-shadow:
+    0 0 20px rgba(20, 184, 166, 0.35),
+    0 0 50px rgba(20, 184, 166, 0.18);
+
+  animation: profileGlow 4s ease-in-out infinite;
+
+  position: relative;
+  z-index: 2;
 }
 
-.date {
-  color: #9ca3af;
-  font-size: 16px;
-}
 
-.time {
-  font-size: 72px;
-  font-weight: 600;
-  color: #2dd4bf;
-}
+/* =========================================================
+   TIME + DATE
+   ========================================================= */
 
-/* Time + Date Glass Container */
 .timeBox {
   margin-top: 12px;
+
   padding: 16px 28px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
- 
-  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.15);
+
   border-radius: 20px;
+
   display: inline-flex;
+
   flex-direction: column;
+
   align-items: center;
+
+  justify-content: center;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  position: relative;
+
+  overflow: hidden;
 }
 
-/* card */
+
+/* Small light reflection */
+
+.timeBox::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 10%;
+
+  width: 80%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+.date {
+  margin: 0;
+
+  color: #9ca3af;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  letter-spacing: 0.02em;
+}
+
+
+/* =========================================================
+   TIME
+   ========================================================= */
+
+.time {
+  margin: 4px 0 0;
+
+  font-size: 72px;
+
+  line-height: 1;
+
+  font-weight: 600;
+
+  letter-spacing: -0.04em;
+
+  color: #2dd4bf;
+
+  text-shadow:
+    0 0 15px rgba(45, 212, 191, 0.25),
+    0 0 35px rgba(45, 212, 191, 0.12);
+}
+
+
+/* =========================================================
+   PROFILE CARD
+   ========================================================= */
+
 .card {
   margin-top: 20px;
+
   padding: 20px;
+
   width: 280px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.15);
+
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  position: relative;
+
+  overflow: hidden;
 }
+
+
+/* Card top highlight */
+
+.card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 15%;
+
+  width: 70%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(45, 212, 191, 0.6),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   NAME
+   ========================================================= */
 
 .card h2 {
+  margin: 0 0 6px;
+
   color: #2dd4bf;
-  margin-bottom: 6px;
+
+  font-size: 24px;
+
+  font-weight: 600;
+
+  text-shadow:
+    0 0 15px rgba(45, 212, 191, 0.15);
 }
 
-/* swipe */
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.card p {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.75);
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   TECHNOLOGY LINE
+   ========================================================= */
+
+.techLine {
+  margin-top: 12px;
+
+  padding-top: 10px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  color:
+    rgba(45, 212, 191, 0.8);
+
+  font-size: 10px;
+
+  letter-spacing: 0.04em;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   SWIPE HINT
+   ========================================================= */
+
 .swipe {
   position: absolute;
+
   bottom: 80px;
+
+  left: 0;
+
   width: 100%;
+
   display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
   justify-content: center;
-  gap: 8px;
+
+  gap: 5px;
+
+  color:
+    rgba(255, 255, 255, 0.75);
+
+  font-size: 13px;
+
   opacity: 0.8;
-  animation: bounce 1.5s infinite;
+
+  z-index: 20;
+
+  animation: bounce 1.5s ease-in-out infinite;
 }
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
 
 .arrow {
+  font-size: 22px;
+
+  line-height: 1;
+
   transform: rotate(180deg);
+
+  color: #2dd4bf;
+
+  text-shadow:
+    0 0 10px rgba(45, 212, 191, 0.5);
 }
 
+
+/* =========================================================
+   FLOATING SKILLS ANIMATION
+   ========================================================= */
+
+@keyframes floating {
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg)
+      scale(1);
+  }
+
+  25% {
+    transform:
+      translate3d(22px, -30px, 0)
+      rotate(8deg)
+      scale(1.08);
+  }
+
+  50% {
+    transform:
+      translate3d(-18px, -55px, 0)
+      rotate(-7deg)
+      scale(0.94);
+  }
+
+  75% {
+    transform:
+      translate3d(25px, -20px, 0)
+      rotate(5deg)
+      scale(1.04);
+  }
+
+  100% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   ORBIT ANIMATIONS
+   ========================================================= */
+
+@keyframes orbitOne {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+}
+
+
+@keyframes orbitTwo {
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+}
+
+
+/* =========================================================
+   GREEN GLOW ANIMATION
+   ========================================================= */
+
+@keyframes greenPulse {
+  0%,
+  100% {
+    opacity: 0.35;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+  }
+
+  50% {
+    opacity: 0.75;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.25);
+  }
+}
+
+
+/* =========================================================
+   GOLD GLOW ANIMATION
+   ========================================================= */
+
+@keyframes goldPulse {
+  0%,
+  100% {
+    opacity: 0.25;
+
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.65;
+
+    transform: scale(1.2);
+  }
+}
+
+
+/* =========================================================
+   PROFILE GLOW
+   ========================================================= */
+
+@keyframes profileGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(20, 184, 166, 0.35),
+      0 0 50px rgba(20, 184, 166, 0.12);
+  }
+
+  50% {
+    box-shadow:
+      0 0 30px rgba(20, 184, 166, 0.55),
+      0 0 75px rgba(20, 184, 166, 0.22);
+  }
+}
+
+
+/* =========================================================
+   SWIPE BOUNCE
+   ========================================================= */
+
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .skill {
+    font-size: 28px;
+
+    opacity: 0.55;
+  }
+
+  .orbitOne {
+    width: 340px;
+    height: 340px;
+  }
+
+  .orbitTwo {
+    width: 470px;
+    height: 290px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .screen {
+    min-height: 100svh;
+  }
+
+
+  /* Smaller skill icons */
+
+  .skill {
+    font-size: 22px;
+
+    opacity: 0.38;
+
+    gap: 0;
+  }
+
+
+  /* Hide technology labels */
+
+  .skill span {
+    display: none;
+  }
+
+
+  /* Smaller orbits */
+
+  .orbitOne {
+    width: 260px;
+    height: 260px;
+  }
+
+  .orbitTwo {
+    width: 360px;
+    height: 220px;
+  }
+
+
+  /* Smaller profile */
+
+  .profile {
+    width: 100px;
+    height: 100px;
+  }
+
+
+  /* Center */
+
+  .center {
+    padding-top: 90px;
+  }
+
+
+  /* Date */
+
+  .date {
+    font-size: 14px;
+  }
+
+
+  /* Time */
+
+  .time {
+    font-size: 52px;
+  }
+
+
+  /* Time box */
+
+  .timeBox {
+    padding: 14px 22px;
+  }
+
+
+  /* Card */
+
+  .card {
+    width: 260px;
+
+    padding: 18px;
+  }
+
+
+  .card h2 {
+    font-size: 21px;
+  }
+
+
+  .card p {
+    font-size: 13px;
+  }
+
+
+  .techLine {
+    font-size: 9px;
+  }
+
+
+  /* Swipe */
+
+  .swipe {
+    bottom: 55px;
+  }
+
+
+  /* Status */
+
+  .statusBar {
+    padding: 0 15px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .center {
+    padding-top: 75px;
+  }
+
+  .profile {
+    width: 88px;
+    height: 88px;
+  }
+
+  .time {
+    font-size: 44px;
+  }
+
+  .timeBox {
+    padding: 12px 18px;
+  }
+
+  .card {
+    width: 235px;
+
+    padding: 15px;
+  }
+
+  .techLine {
+    font-size: 8px;
+  }
+
+  .orbitOne {
+    width: 220px;
+    height: 220px;
+  }
+
+  .orbitTwo {
+    width: 300px;
+    height: 190px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .skill,
+  .orbitOne,
+  .orbitTwo,
+  .greenGlow,
+  .goldGlow,
+  .profile,
+  .swipe {
+    animation: none;
+  }
+
+  .screen {
+    transition: none;
+  }
 }
