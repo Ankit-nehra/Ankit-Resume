@@ -250,7 +250,7 @@ export default function LockScreen({ onUnlock }) {
       <div className={styles.swipe}>
         <span>Swipe up</span>
 
-        <div className={styles.arrow}>⌃</div>
+        <div className={styles.arrow}><span></span></div>
       </div>
     </div>
   );
