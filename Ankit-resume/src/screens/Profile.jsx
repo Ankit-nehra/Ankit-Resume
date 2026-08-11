@@ -432,7 +432,7 @@ I continuously learn new technologies, research better approaches and focus on w
 
           <a
 
-            href={`https://${profileData.linkedin}`}
+            href={profileData.linkedin}
 
             target="_blank"
 
