@@ -376,7 +376,7 @@ export default function Dashboard({ lightMode, setLightMode }) {
           <a
 
             href={resume}
-            download="Ankit-Resume_Full-Stack-MERN-Developer";
+            download="Ankit-Resume_Full-Stack-MERN-Developer.docx"
             target="_blank"
 
             rel="noopener noreferrer"
