@@ -58,7 +58,7 @@ export default function Dashboard({ lightMode, setLightMode }) {
 
 
 
-const resumeLink = "https://collection.cloudinary.com/dhslfpaio/464fa2878df84a9911a40e7a436cef53";
+const resumeLink = "https://collection.cloudinary.com/dhslfpaio/996d309367893652d4a57805fc0debe3";
   
   // Add your document URL here
 
