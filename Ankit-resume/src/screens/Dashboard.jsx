@@ -57,7 +57,7 @@ export default function Dashboard({ lightMode, setLightMode }) {
   ];
 
 
-const resumeLink = "https://res.cloudinary.com/dhslfpaio/raw/upload/v1787640905/Ankit-resume-_eieur1.docx";
+const resumeLink = "https://res.cloudinary.com/dhslfpaio/raw/upload/Ankit_FullStackDeveloper_resume.docx";
   // Add your document URL here
 
 
