@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import resume from "../assets/Ankit-Resume_Full-Stack-MERN-Developer.docx";
+
 import {
   FaUser,
   FaBriefcase,
@@ -57,6 +57,8 @@ export default function Dashboard({ lightMode, setLightMode }) {
   ];
 
 
+const resumeLink = "https://res.cloudinary.com/dhslfpaio/raw/upload/v1786094376/Ankit_resume";
+  // Add your document URL here
 
 
   return (
@@ -375,8 +377,8 @@ export default function Dashboard({ lightMode, setLightMode }) {
 
           <a
 
-            href={resume}
-            download="Ankit-Resume_Full-Stack-MERN-Developer.docx"
+            href={resumeLink}
+
             target="_blank"
 
             rel="noopener noreferrer"
