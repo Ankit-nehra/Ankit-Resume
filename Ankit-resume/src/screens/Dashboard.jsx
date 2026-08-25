@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-import resume from "../assets/Ankit-Resume_Full-Stack-MERN-Developer_docx.docx";
+import resume from "../assets/Ankit-Resume_Full-Stack-MERN-Developer.docx";
 import {
   FaUser,
   FaBriefcase,
