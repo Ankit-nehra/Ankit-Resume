@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
-
+import resume from "../assets/Ankit-Resume_Full-Stack-MERN-Developer.pdf";
 import {
   FaUser,
   FaBriefcase,
@@ -55,16 +55,6 @@ export default function Dashboard({ lightMode, setLightMode }) {
     },
     
   ];
-
-
-
-const resumeLink = "../assets/Ankit-Resume_Full-Stack-MERN-Developer_docx";
-  
-  // Add your document URL here
-
-
-
-  
 
 
 
@@ -385,7 +375,7 @@ const resumeLink = "../assets/Ankit-Resume_Full-Stack-MERN-Developer_docx";
 
           <a
 
-            href={resumeLink}
+            href={resume}
             download="Ankit-Resume_Full-Stack-MERN-Developer_docx";
             target="_blank"
 
