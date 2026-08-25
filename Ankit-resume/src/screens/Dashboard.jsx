@@ -58,7 +58,7 @@ export default function Dashboard({ lightMode, setLightMode }) {
 
 
 
-const resumeLink = "https://collection.cloudinary.com/dhslfpaio/996d309367893652d4a57805fc0debe3";
+const resumeLink = "../assets/Ankit-Resume_Full-Stack-MERN-Developer_docx";
   
   // Add your document URL here
 
@@ -386,7 +386,7 @@ const resumeLink = "https://collection.cloudinary.com/dhslfpaio/996d309367893652
           <a
 
             href={resumeLink}
-
+            download="Ankit-Resume_Full-Stack-MERN-Developer_docx";
             target="_blank"
 
             rel="noopener noreferrer"
